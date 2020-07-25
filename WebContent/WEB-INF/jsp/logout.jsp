@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>どこつぶ</title>
-</head>
-<body>
-<h1>どこつぶログアウト</h1>
-<p>ログアウトしました</p>
-<a href="/docoTsubu/">トップへ</a>
-</body>
+ <head>
+  <meta charset="UTF-8">
+  <title>どこつぶ</title>
+ </head>
+ <body>
+  <h1>どこつぶログアウト</h1>
+  <p>ログアウトしました</p>
+  <a href="<c:url value='/' />">トップへ</a>
+ </body>
 </html>

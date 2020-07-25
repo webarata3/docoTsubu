@@ -41,4 +41,14 @@
 +   <a href="<c:url value='/Main' />">TOPへ</a>
 ```
 
+`logout.jsp`は2箇所変更。
+
+```diff
++<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+```
+
+```diff
+-  <a href="/docoTsubu/">トップへ</a>
++  <a href="<c:url value='/' />">トップへ</a>
+```
 
