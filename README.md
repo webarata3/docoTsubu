@@ -29,12 +29,16 @@
 
 ## コンテキストパスをリテラルにしない
 
-loginResult.jsp
+`loginResult.jsp`は2箇所変更。
 
 ```diff
 -   <a href="/docoTsubu/Main">つぶやき投稿・閲覧へ</a>
 +   <a href="<c:url value='/Main' />">つぶやき投稿・閲覧へ</a>
 ```
 
+```diff
+-   <a href="/docoTsubu/">TOPへ</a>
++   <a href="<c:url value='/Main' />">TOPへ</a>
+```
 
 
