@@ -94,6 +94,27 @@
 +        response.sendRedirect(getServletContext().getContextPath() + "/Main");
 ```
 
+また、つぶやきがない場合にエラーメッセージを表示しているが、上記の変更をするとエラーが表示できなくなるので、次の変更を行う。
+
+`doPost`のメッセージをセッションスコープに変更する。
+
+```diff
+-            request.setAttribute("errorMsg", "つぶやきが入力されていません");
++            HttpSession session = request.getSession();
++            session.setAttribute("errorMsg", "つぶやきが入力されていません");
+```
+
+`doGet`でエラーメッセージがあれば、セッションスコープからリクエストスコープに変更する。
+
+```diff
++        String errorMsg = (String) session.getAttribute("errorMsg");
++
++        if (errorMsg != null) {
++            session.removeAttribute("errorMsg");
++            request.setAttribute("errorMsg", errorMsg);
++        }
+```
+
 ## DAOの変更
 
 全体的な見直し。
@@ -163,3 +184,4 @@ public class MutterDAO {
     }
 }
 ```
+

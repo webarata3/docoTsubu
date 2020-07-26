@@ -28,6 +28,12 @@ public class Main extends HttpServlet {
 
         HttpSession session = request.getSession();
         User loginUser = (User) session.getAttribute("loginUser");
+        String errorMsg = (String) session.getAttribute("errorMsg");
+
+        if (errorMsg != null) {
+            session.removeAttribute("errorMsg");
+            request.setAttribute("errorMsg", errorMsg);
+        }
 
         if (loginUser == null) {
             response.sendRedirect(getServletContext().getContextPath() + "/");
@@ -50,7 +56,8 @@ public class Main extends HttpServlet {
             PostMutterLogic postMutterLogic = new PostMutterLogic();
             postMutterLogic.execute(mutter);
         } else {
-            request.setAttribute("errorMsg", "つぶやきが入力されていません");
+            HttpSession session = request.getSession();
+            session.setAttribute("errorMsg", "つぶやきが入力されていません");
         }
 
         response.sendRedirect(getServletContext().getContextPath() + "/Main");
