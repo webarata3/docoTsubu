@@ -53,11 +53,6 @@ public class Main extends HttpServlet {
             request.setAttribute("errorMsg", "つぶやきが入力されていません");
         }
 
-        GetMutterListLogic getMutterListLogic = new GetMutterListLogic();
-        List<Mutter> mutterList = getMutterListLogic.execute();
-        request.setAttribute("mutterList", mutterList);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(getServletContext().getContextPath() + "/Main");
     }
 }

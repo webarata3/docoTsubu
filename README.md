@@ -77,3 +77,21 @@
 -            response.sendRedirect("/docoTsubu/");
 +            response.sendRedirect(getServletContext().getContextPath() + "/");
 ```
+
+## つぶやき投稿後
+
+つぶやき投稿後は`forward`でJSPを表示するとブラウザの更新でフォームが再送信されてしまう。そのため、`/Main`にリダイレクトするように変更する。
+
+`Main.java`の`doPost`を変更する。
+
+```diff
+-        GetMutterListLogic getMutterListLogic = new GetMutterListLogic();
+-        List<Mutter> mutterList = getMutterListLogic.execute();
+-        request.setAttribute("mutterList", mutterList);
+-
+-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+-        dispatcher.forward(request, response);
++        response.sendRedirect(getServletContext().getContextPath() + "/Main");
+```
+
+
