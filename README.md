@@ -224,7 +224,7 @@ public class MutterDAO {
 
 最後に`MutterDao.java`を変更します。例外が発生した場合に、`RuntimeException`に変更して例外を投げ直します。
 
-```java
+```diff
 -        } catch (SQLException e) {
 -            e.printStackTrace();
 -            return null;
@@ -232,7 +232,7 @@ public class MutterDAO {
 +            throw new RuntimeException(e);
 ```
 
-```java
+```diff
 -        } catch (SQLException e) {
 -            e.printStackTrace();
 -            return false;
