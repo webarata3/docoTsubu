@@ -185,3 +185,57 @@ public class MutterDAO {
 }
 ```
 
+## データベースのエラー対応
+
+もとのプログラムでは、データベース関連でエラーが出てもエラーを握りつぶして何も起きません。ここではエラーページに飛ばすように変更します。
+
+`error.jsp`を作成します。
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>どこつぶ</title>
+</head>
+<body>
+<h1>どこつぶへようこそ</h1>
+<p>内部でエラーが出ました。</p>
+</body>
+</html>
+```
+
+このエラー画面に飛ばすために`WEB-INF`に`web.xml`を作成します。
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"                  
+         version="4.0">
+           <error-page>
+ <exception-type>java.util.RuntimeException</exception-type>
+  <location>/error.jsp</location>
+ </error-page
+</web-app>
+```
+
+最後に`MutterDao.java`を変更します。例外が発生した場合に、`RuntimeException`に変更して例外を投げ直します。
+
+```java
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-            return null;
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
+```
+
+```java
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-            return false;
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
+```

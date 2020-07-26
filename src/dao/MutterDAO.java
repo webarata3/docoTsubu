@@ -32,9 +32,8 @@ public class MutterDAO {
                 Mutter mutter = new Mutter(id, userName, text);
                 mutterList.add(mutter);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return mutterList;
     }
@@ -50,9 +49,8 @@ public class MutterDAO {
             if (result != 1) {
                 return false;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         return true;
