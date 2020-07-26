@@ -239,3 +239,48 @@ public class MutterDAO {
 +        } catch (SQLException e) {
 +            throw new RuntimeException(e);
 ```
+
+## Filterの設定
+
+文字コードは`utf-8`限定で良いので`Fiter`で設定する。
+
+`CharacterEncodingFilter.java`
+
+```java
+package servlet;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+
+@WebFilter("/*")
+public class CharacterEncodingFilter implements Filter {
+
+    public CharacterEncodingFilter() {
+    }
+
+    public void destroy() {
+    }
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        request.setCharacterEncoding("utf-8");
+        chain.doFilter(request, response);
+    }
+
+    public void init(FilterConfig fConfig) throws ServletException {
+    }
+}
+```
+
+`Login.java`と`Main.java`のEncodingの設定を除去します。
+
+```java
+-        request.setCharacterEncoding("utf-8");
+```
