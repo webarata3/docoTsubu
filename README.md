@@ -52,3 +52,19 @@
 +  <a href="<c:url value='/' />">トップへ</a>
 ```
 
+`main.jsp`は3箇所変更。
+
+```diff
+-   <a href="/docoTsubu/Logout">ログアウト</a>
++   <a href="<c:url value='Logout' />">ログアウト</a>
+```
+
+```diff
+-  <p><a href="/docoTsubu/Main">更新</a></p>
++  <p><a href="<c:url value='/Main' />">更新</a></p>
+```
+
+```diff
+-  <form action="/docoTsubu/Main" method="post">
++  <form action="<c:url value='/Main' />" method="post">
+```
