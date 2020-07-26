@@ -68,3 +68,10 @@
 -  <form action="/docoTsubu/Main" method="post">
 +  <form action="<c:url value='/Main' />" method="post">
 ```
+
+`Main.java`は1箇所変更。
+
+```diff
+-            response.sendRedirect("/docoTsubu/");
++            response.sendRedirect(getServletContext().getContextPath() + "/");
+```

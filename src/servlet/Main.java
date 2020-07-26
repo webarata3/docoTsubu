@@ -30,11 +30,10 @@ public class Main extends HttpServlet {
         User loginUser = (User) session.getAttribute("loginUser");
 
         if (loginUser == null) {
-            response.sendRedirect("/docoTsubu/");
+            response.sendRedirect(getServletContext().getContextPath() + "/");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 
