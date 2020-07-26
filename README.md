@@ -281,6 +281,6 @@ public class CharacterEncodingFilter implements Filter {
 
 `Login.java`と`Main.java`のEncodingの設定を除去します。
 
-```java
+```diff
 -        request.setCharacterEncoding("utf-8");
 ```
